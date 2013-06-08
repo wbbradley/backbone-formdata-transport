@@ -137,7 +137,6 @@ $.ajaxTransport transport_name, (options, origOptions, jqXHR) ->
   }
 
 class FormDataTransport
-  @csrf_token: null
   @Model: FormDataTransportModel
 
 Backbone.FormDataTransport = FormDataTransport
