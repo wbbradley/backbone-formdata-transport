@@ -10,6 +10,14 @@ make_utils 'Backbone.FormDataTransport'
 error 'I depend on jQuery and it does not seem to be loaded' if not $
 error 'I depend on Backbone and it does not seem to be loaded' if not Backbone?.ajax
 
+hasKeys = (obj) ->
+  if typeof obj is 'object'
+    size = 0
+    for key, value of obj
+        if obj.hasOwnProperty key
+          return true
+  return false
+
 class FormDataTransportModel extends Backbone.Model
   set_file_field: (field_name, file) =>
     @files = @files or {}
@@ -19,7 +27,7 @@ class FormDataTransportModel extends Backbone.Model
     [log, error] = make_utils 'Backbone.FormDataTransport.Model'
 
     options.model = @
-    if @files
+    if hasKeys @files
       # set multipart_form_data to invoke the new FormData transport
       options.multipart_form_data = true
 
@@ -49,6 +57,7 @@ class FormDataTransportModel extends Backbone.Model
               else
                 log 'warning', "it looks like #{name} has changed while we were attempting an upload (that turned out to succeed)"
         return
+    return xhr
 
 transport_name = 'multipart-form-data'
 
