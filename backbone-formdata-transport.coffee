@@ -5,7 +5,7 @@ make_utils = (name) ->
     throw new Error "#{name} : error : #{msg}"
   [log, error]
 
-make_utils 'Backbone.FormDataTransport'
+[log, error] = make_utils 'Backbone.FormDataTransport'
 
 error 'I depend on jQuery and it does not seem to be loaded' if not $
 error 'I depend on Backbone and it does not seem to be loaded' if not Backbone?.ajax
