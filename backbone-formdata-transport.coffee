@@ -22,6 +22,7 @@ class FormDataTransportModel extends Backbone.Model
   set_file_field: (field_name, file) =>
     @files = @files or {}
     @files[field_name] = file
+    @trigger 'form-data-transport-model:files-added'
 
   sync: (method, model, options) =>
     [log, error] = make_utils 'Backbone.FormDataTransport.Model'
