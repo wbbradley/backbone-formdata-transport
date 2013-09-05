@@ -125,6 +125,8 @@ $.ajaxTransport transport_name, (options, origOptions, jqXHR) ->
 
       x_csrf = 'X-CSRFToken'
       xhr.setRequestHeader x_csrf, headers[x_csrf] if x_csrf of headers
+
+      xhr.setRequestHeader 'Accept', 'application/json'
        
       form_data = new FormData
       for field_name, file of files
